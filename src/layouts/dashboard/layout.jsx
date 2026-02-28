@@ -2,16 +2,15 @@ import { merge } from 'es-toolkit';
 import { useBoolean } from 'minimal-shared/hooks';
 
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 import { iconButtonClasses } from '@mui/material/IconButton';
 
-import { _contacts, _notifications } from 'src/_mock';
+import { _notifications } from 'src/_mock';
 
 import { Logo } from 'src/components/logo';
 import { useSettingsContext } from 'src/components/settings';
 
-import { useMockedUser } from 'src/auth/hooks';
+import { useAuthContext } from 'src/auth/hooks';
 
 import { NavMobile } from './nav-mobile';
 import { VerticalDivider } from './content';
@@ -21,14 +20,11 @@ import { NavHorizontal } from './nav-horizontal';
 import { _account } from '../nav-config-account';
 import { MainSection } from '../core/main-section';
 import { Searchbar } from '../components/searchbar';
-import { _workspaces } from '../nav-config-workspace';
 import { MenuButton } from '../components/menu-button';
 import { HeaderSection } from '../core/header-section';
 import { LayoutSection } from '../core/layout-section';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
-import { ContactsPopover } from '../components/contacts-popover';
-import { WorkspacesPopover } from '../components/workspaces-popover';
 import { navData as dashboardNavData } from '../nav-config-dashboard';
 import { dashboardLayoutVars, dashboardNavColorVars } from './css-vars';
 import { NotificationsDrawer } from '../components/notifications-drawer';
@@ -38,7 +34,7 @@ import { NotificationsDrawer } from '../components/notifications-drawer';
 export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery = 'lg' }) {
   const theme = useTheme();
 
-  const { user } = useMockedUser();
+  const { user } = useAuthContext();
 
   const settings = useSettingsContext();
 
@@ -62,7 +58,6 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
           ...(isNavVertical && { px: { [layoutQuery]: 5 } }),
           ...(isNavHorizontal && {
             bgcolor: 'var(--layout-nav-bg)',
-            height: { [layoutQuery]: 'var(--layout-nav-horizontal-height)' },
             [`& .${iconButtonClasses.root}`]: { color: 'var(--layout-nav-text-secondary-color)' },
           }),
         },
@@ -70,19 +65,6 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
     };
 
     const headerSlots = {
-      topArea: (
-        <Alert severity="info" sx={{ display: 'none', borderRadius: 0 }}>
-          This is an info Alert.
-        </Alert>
-      ),
-      bottomArea: isNavHorizontal ? (
-        <NavHorizontal
-          data={navData}
-          layoutQuery={layoutQuery}
-          cssVars={navVars.section}
-          checkPermissions={canDisplayItemByRole}
-        />
-      ) : null,
       leftArea: (
         <>
           {/** @slot Nav mobile */}
@@ -108,28 +90,26 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
             />
           )}
 
-          {/** @slot Divider */}
-          {isNavHorizontal && (
-            <VerticalDivider sx={{ [theme.breakpoints.up(layoutQuery)]: { display: 'flex' } }} />
-          )}
-
-          {/** @slot Workspace popover */}
-          <WorkspacesPopover
-            data={_workspaces}
-            sx={{ ...(isNavHorizontal && { color: 'var(--layout-nav-text-primary-color)' }) }}
-          />
         </>
       ),
+      centerArea: isNavHorizontal ? (
+        <NavHorizontal
+          data={navData}
+          layoutQuery={layoutQuery}
+          cssVars={navVars.section}
+          checkPermissions={canDisplayItemByRole}
+          sx={{
+            display: { xs: 'none', [layoutQuery]: 'flex' },
+          }}
+        />
+      ) : null,
       rightArea: (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0, sm: 0.75 } }}>
           {/** @slot Searchbar */}
           <Searchbar data={navData} />
 
-          {/** @slot Notifications popover */}
+          {/** @slot Notifications */}
           <NotificationsDrawer data={_notifications} />
-
-          {/** @slot Contacts popover */}
-          <ContactsPopover data={_contacts} />
 
           {/** @slot Settings button */}
           <SettingsButton />

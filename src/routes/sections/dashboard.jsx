@@ -30,6 +30,12 @@ const ProductEditPage = lazy(() => import('src/pages/dashboard/product/edit'));
 // Order
 const OrderListPage = lazy(() => import('src/pages/dashboard/order/list'));
 const OrderDetailsPage = lazy(() => import('src/pages/dashboard/order/details'));
+// Logs
+const LogListPage = lazy(() => import('src/pages/dashboard/logs/list'));
+const LogDetailsPage = lazy(() => import('src/pages/dashboard/logs/details'));
+// Server Instances
+const ServerInstanceListPage = lazy(() => import('src/pages/dashboard/server-instances/list'));
+const ServerInstanceDetailsPage = lazy(() => import('src/pages/dashboard/server-instances/details'));
 // Invoice
 const InvoiceListPage = lazy(() => import('src/pages/dashboard/invoice/list'));
 const InvoiceDetailsPage = lazy(() => import('src/pages/dashboard/invoice/details'));
@@ -152,6 +158,22 @@ export const dashboardRoutes = [
           { index: true, element: <OrderListPage /> },
           { path: 'list', element: <OrderListPage /> },
           { path: ':id', element: <OrderDetailsPage /> },
+        ],
+      },
+      {
+        path: 'logs',
+        children: [
+          { index: true, element: <LogListPage /> },
+          { path: 'list', element: <LogListPage /> },
+          { path: ':id', element: <LogDetailsPage /> },
+        ],
+      },
+      {
+        path: 'server-instances',
+        children: [
+          { index: true, element: <ServerInstanceListPage /> },
+          { path: 'list', element: <ServerInstanceListPage /> },
+          { path: ':id', element: <ServerInstanceDetailsPage /> },
         ],
       },
       {

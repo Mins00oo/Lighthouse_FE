@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(npx eslint:*)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "mcp__notion__API-post-search",
+      "mcp__notion__API-update-a-data-source",
+      "mcp__notion__API-retrieve-a-database",
+      "mcp__notion__API-retrieve-a-data-source",
+      "mcp__notion__API-post-page",
+      "mcp__notion__API-patch-page",
+      "mcp__notion__API-patch-block-children",
+      "mcp__notion__API-get-block-children"
     ]
   }
 }

@@ -152,6 +152,14 @@ export const paths = {
       details: (id) => `${ROOTS.DASHBOARD}/order/${id}`,
       demo: { details: `${ROOTS.DASHBOARD}/order/${MOCK_ID}` },
     },
+    logs: {
+      root: `${ROOTS.DASHBOARD}/logs`,
+      details: (id) => `${ROOTS.DASHBOARD}/logs/${id}`,
+    },
+    serverInstances: {
+      root: `${ROOTS.DASHBOARD}/server-instances`,
+      details: (id) => `${ROOTS.DASHBOARD}/server-instances/${id}`,
+    },
     job: {
       root: `${ROOTS.DASHBOARD}/job`,
       new: `${ROOTS.DASHBOARD}/job/new`,

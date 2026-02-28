@@ -2,7 +2,7 @@ import { paths } from 'src/routes/paths';
 
 import axios from 'src/lib/axios';
 
-import { JWT_STORAGE_KEY } from './constant';
+import { JWT_STORAGE_KEY, SESSION_EXPIRED_KEY, SESSION_EXPIRED_REASONS } from './constant';
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ export function tokenExpired(exp) {
 
   setTimeout(() => {
     try {
-      alert('Token expired!');
+      sessionStorage.setItem(SESSION_EXPIRED_KEY, SESSION_EXPIRED_REASONS.TOKEN_EXPIRED);
       localStorage.removeItem(JWT_STORAGE_KEY);
       window.location.href = paths.auth.jwt.signIn;
     } catch (error) {

@@ -8,6 +8,7 @@ import { CONFIG } from 'src/global-config';
 import { LocalizationProvider } from 'src/locales';
 import { themeConfig, ThemeProvider } from 'src/theme';
 import { I18nProvider } from 'src/locales/i18n-provider';
+import { ServerHealthProvider } from 'src/context/server-health-context';
 
 import { Snackbar } from 'src/components/snackbar';
 import { ProgressBar } from 'src/components/progress-bar';
@@ -38,25 +39,27 @@ export default function App({ children }) {
 
   return (
     <I18nProvider>
-      <AuthProvider>
-        <SettingsProvider defaultSettings={defaultSettings}>
-          <LocalizationProvider>
-            <ThemeProvider
-              modeStorageKey={themeConfig.modeStorageKey}
-              defaultMode={themeConfig.enableSystemMode ? 'system' : themeConfig.defaultMode}
-            >
-              <MotionLazy>
-                <CheckoutProvider>
-                  <Snackbar />
-                  <ProgressBar />
-                  <SettingsDrawer defaultSettings={defaultSettings} />
-                  {children}
-                </CheckoutProvider>
-              </MotionLazy>
-            </ThemeProvider>
-          </LocalizationProvider>
-        </SettingsProvider>
-      </AuthProvider>
+      <SettingsProvider defaultSettings={defaultSettings}>
+        <LocalizationProvider>
+          <ThemeProvider
+            modeStorageKey={themeConfig.modeStorageKey}
+            defaultMode={themeConfig.enableSystemMode ? 'system' : themeConfig.defaultMode}
+          >
+            <ServerHealthProvider>
+              <AuthProvider>
+                <MotionLazy>
+                  <CheckoutProvider>
+                    <Snackbar />
+                    <ProgressBar />
+                    <SettingsDrawer defaultSettings={defaultSettings} />
+                    {children}
+                  </CheckoutProvider>
+                </MotionLazy>
+              </AuthProvider>
+            </ServerHealthProvider>
+          </ThemeProvider>
+        </LocalizationProvider>
+      </SettingsProvider>
     </I18nProvider>
   );
 }

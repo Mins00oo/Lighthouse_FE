@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { paths } from 'src/routes/paths';
-import { useRouter, usePathname } from 'src/routes/hooks';
+import { useRouter } from 'src/routes/hooks';
 
 import { CONFIG } from 'src/global-config';
 
@@ -21,16 +21,10 @@ const signInPaths = {
 
 export function AuthGuard({ children }) {
   const router = useRouter();
-  const pathname = usePathname();
 
   const { authenticated, loading } = useAuthContext();
 
   const [isChecking, setIsChecking] = useState(true);
-
-  const createRedirectPath = (currentPath) => {
-    const queryString = new URLSearchParams({ returnTo: pathname }).toString();
-    return `${currentPath}?${queryString}`;
-  };
 
   const checkPermissions = async () => {
     if (loading) {
@@ -39,11 +33,9 @@ export function AuthGuard({ children }) {
 
     if (!authenticated) {
       const { method } = CONFIG.auth;
-
       const signInPath = signInPaths[method];
-      const redirectPath = createRedirectPath(signInPath);
 
-      router.replace(redirectPath);
+      router.replace(signInPath);
 
       return;
     }

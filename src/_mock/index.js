@@ -8,7 +8,11 @@ export * from './_tour';
 
 export * from './_blog';
 
+export * from './_logs';
+
 export * from './assets';
+
+export * from './_server-instances';
 
 export * from './_files';
 

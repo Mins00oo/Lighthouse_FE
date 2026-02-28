@@ -1,6 +1,6 @@
 import { z as zod } from 'zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 import { useBoolean } from 'minimal-shared/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -20,6 +20,7 @@ import { useAuthContext } from '../../hooks';
 import { getErrorMessage } from '../../utils';
 import { FormHead } from '../../components/form-head';
 import { signInWithPassword } from '../../context/jwt';
+import { SESSION_EXPIRED_KEY, SESSION_EXPIRED_REASONS } from '../../context/jwt/constant';
 
 // ----------------------------------------------------------------------
 
@@ -133,6 +134,19 @@ export function JwtSignInView() {
   const { checkUserSession } = useAuthContext();
 
   const [errorMessage, setErrorMessage] = useState('');
+  const [sessionMessage, setSessionMessage] = useState('');
+
+  useEffect(() => {
+    const reason = sessionStorage.getItem(SESSION_EXPIRED_KEY);
+    if (reason) {
+      sessionStorage.removeItem(SESSION_EXPIRED_KEY);
+      if (reason === SESSION_EXPIRED_REASONS.TOKEN_EXPIRED) {
+        setSessionMessage('로그인이 만료되었습니다. 다시 로그인해주세요.');
+      } else if (reason === SESSION_EXPIRED_REASONS.UNAUTHORIZED) {
+        setSessionMessage('인증 정보가 유효하지 않습니다. 다시 로그인해주세요.');
+      }
+    }
+  }, []);
 
   const defaultValues = {
     username: '',
@@ -209,6 +223,12 @@ export function JwtSignInView() {
         title="Sign in to your account"
         description="Lighthouse Monitoring System"
       />
+
+      {!!sessionMessage && (
+        <Alert severity="warning" sx={{ mb: 3 }}>
+          {sessionMessage}
+        </Alert>
+      )}
 
       {!!errorMessage && (
         <Alert severity="error" sx={{ mb: 3 }}>

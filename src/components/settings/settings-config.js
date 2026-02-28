@@ -10,10 +10,10 @@ export const defaultSettings = {
   colorScheme: themeConfig.defaultMode,
   direction: themeConfig.direction,
   contrast: 'default',
-  navLayout: 'vertical',
+  navLayout: 'horizontal',
   primaryColor: 'default',
   navColor: 'integrate',
   compactLayout: true,
-  fontSize: 16,
+  fontSize: 14,
   fontFamily: themeConfig.fontFamily.primary,
 };
