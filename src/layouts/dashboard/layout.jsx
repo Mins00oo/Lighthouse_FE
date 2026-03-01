@@ -13,13 +13,11 @@ import { useSettingsContext } from 'src/components/settings';
 import { useAuthContext } from 'src/auth/hooks';
 
 import { NavMobile } from './nav-mobile';
-import { VerticalDivider } from './content';
 import { NavVertical } from './nav-vertical';
 import { layoutClasses } from '../core/classes';
 import { NavHorizontal } from './nav-horizontal';
 import { _account } from '../nav-config-account';
 import { MainSection } from '../core/main-section';
-import { Searchbar } from '../components/searchbar';
 import { MenuButton } from '../components/menu-button';
 import { HeaderSection } from '../core/header-section';
 import { LayoutSection } from '../core/layout-section';
@@ -55,7 +53,7 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
       container: {
         maxWidth: false,
         sx: {
-          ...(isNavVertical && { px: { [layoutQuery]: 5 } }),
+          ...(isNavVertical && { px: { [layoutQuery]: 3 } }),
           ...(isNavHorizontal && {
             bgcolor: 'var(--layout-nav-bg)',
             [`& .${iconButtonClasses.root}`]: { color: 'var(--layout-nav-text-secondary-color)' },
@@ -89,7 +87,6 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
               }}
             />
           )}
-
         </>
       ),
       centerArea: isNavHorizontal ? (
@@ -105,9 +102,6 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
       ) : null,
       rightArea: (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0, sm: 0.75 } }}>
-          {/** @slot Searchbar */}
-          <Searchbar data={navData} />
-
           {/** @slot Notifications */}
           <NotificationsDrawer data={_notifications} />
 
@@ -127,7 +121,14 @@ export function DashboardLayout({ sx, cssVars, children, slotProps, layoutQuery 
         {...slotProps?.header}
         slots={{ ...headerSlots, ...slotProps?.header?.slots }}
         slotProps={merge(headerSlotProps, slotProps?.header?.slotProps ?? {})}
-        sx={slotProps?.header?.sx}
+        sx={[
+          {
+            borderBottom: '1px solid var(--layout-nav-border-color)',
+          },
+          ...(Array.isArray(slotProps?.header?.sx)
+            ? slotProps.header.sx
+            : [slotProps?.header?.sx]),
+        ]}
       />
     );
   };

@@ -42,17 +42,17 @@ export const text = {
   }),
 };
 
-// Background color
+// Background color — dark uses monitoring navy tones
 export const background = {
   light: createPaletteChannel({
     paper: '#FFFFFF',
-    default: '#FFFFFF',
+    default: '#F1F5F9',
     neutral: grey[200],
   }),
   dark: createPaletteChannel({
-    paper: grey[800],
-    default: grey[900],
-    neutral: '#28323D',
+    paper: '#1A2332',
+    default: '#0B1120',
+    neutral: '#243447',
   }),
 };
 

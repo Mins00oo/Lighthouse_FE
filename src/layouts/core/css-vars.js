@@ -6,7 +6,7 @@ export function layoutSectionVars(theme) {
     '--layout-nav-mobile-width': '288px',
     '--layout-header-blur': '8px',
     '--layout-header-zIndex': theme.zIndex.appBar + 1,
-    '--layout-header-mobile-height': '64px',
-    '--layout-header-desktop-height': '72px',
+    '--layout-header-mobile-height': '56px',
+    '--layout-header-desktop-height': '56px',
   };
 }

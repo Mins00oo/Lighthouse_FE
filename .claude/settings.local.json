@@ -10,7 +10,12 @@
       "mcp__notion__API-post-page",
       "mcp__notion__API-patch-page",
       "mcp__notion__API-patch-block-children",
-      "mcp__notion__API-get-block-children"
+      "mcp__notion__API-get-block-children",
+      "WebSearch",
+      "WebFetch(domain:www.whatap.io)",
+      "WebFetch(domain:docs.whatap.io)",
+      "Bash(npm run:*)",
+      "Bash(curl:*)"
     ]
   }
 }

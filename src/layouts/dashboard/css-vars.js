@@ -9,8 +9,8 @@ export function dashboardLayoutVars(theme) {
     '--layout-transition-easing': 'linear',
     '--layout-transition-duration': '120ms',
     '--layout-nav-mini-width': '88px',
-    '--layout-nav-vertical-width': '300px',
-    '--layout-nav-horizontal-height': '64px',
+    '--layout-nav-vertical-width': '260px',
+    '--layout-nav-horizontal-height': '56px',
     '--layout-dashboard-content-pt': theme.spacing(1),
     '--layout-dashboard-content-pb': theme.spacing(8),
     '--layout-dashboard-content-px': theme.spacing(5),
@@ -35,8 +35,9 @@ export function dashboardNavColorVars(theme, navColor = 'integrate', navLayout =
           '--layout-nav-text-secondary-color': palette.text.secondary,
           '--layout-nav-text-disabled-color': palette.text.disabled,
           ...theme.applyStyles('dark', {
-            '--layout-nav-border-color': varAlpha(palette.grey['500Channel'], 0.08),
-            '--layout-nav-horizontal-bg': varAlpha(palette.background.defaultChannel, 0.96),
+            '--layout-nav-bg': '#111927',
+            '--layout-nav-border-color': 'rgba(148, 163, 184, 0.08)',
+            '--layout-nav-horizontal-bg': 'rgba(17, 25, 39, 0.96)',
           }),
         },
         section: undefined,
@@ -51,8 +52,8 @@ export function dashboardNavColorVars(theme, navColor = 'integrate', navLayout =
           '--layout-nav-text-secondary-color': palette.grey[500],
           '--layout-nav-text-disabled-color': palette.grey[600],
           ...theme.applyStyles('dark', {
-            '--layout-nav-bg': palette.grey[800],
-            '--layout-nav-horizontal-bg': varAlpha(palette.grey['800Channel'], 0.8),
+            '--layout-nav-bg': '#111927',
+            '--layout-nav-horizontal-bg': 'rgba(17, 25, 39, 0.96)',
           }),
         },
         section: {
