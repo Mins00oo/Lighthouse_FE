@@ -15,7 +15,15 @@
       "WebFetch(domain:www.whatap.io)",
       "WebFetch(domain:docs.whatap.io)",
       "Bash(npm run:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(xargs sed:*)",
+      "Bash(sed:*)",
+      "Bash(node:*)",
+      "Bash(npm ls:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)"
     ]
   }
 }
