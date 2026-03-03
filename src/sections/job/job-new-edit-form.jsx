@@ -38,30 +38,30 @@ import { Form, Field, schemaHelper } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export const NewJobSchema = zod.object({
-  title: zod.string().min(1, { message: 'Title is required!' }),
-  content: zod.string().min(1, { message: 'Content is required!' }),
-  employmentTypes: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  role: schemaHelper.nullableInput(zod.string().min(1, { message: 'Role is required!' }), {
+  title: zod.string().min(1, { message: '제목을 입력해주세요.' }),
+  content: zod.string().min(1, { message: '내용을 입력해주세요.' }),
+  employmentTypes: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  role: schemaHelper.nullableInput(zod.string().min(1, { message: '역할을 선택해주세요.' }), {
     // message for null value
-    message: 'Role is required!',
+    message: '역할을 선택해주세요.',
   }),
-  skills: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  workingSchedule: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  locations: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  expiredDate: schemaHelper.date({ message: { required: 'Expired date is required!' } }),
+  skills: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  workingSchedule: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  locations: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  expiredDate: schemaHelper.date({ message: { required: '만료일을 선택해주세요.' } }),
   salary: zod.object({
     price: schemaHelper.nullableInput(
-      zod.number({ coerce: true }).min(1, { message: 'Price is required!' }),
+      zod.number({ coerce: true }).min(1, { message: '가격을 입력해주세요.' }),
       {
         // message for null value
-        message: 'Price is required!',
+        message: '가격을 입력해주세요.',
       }
     ),
     // Not required
     type: zod.string(),
     negotiable: zod.boolean(),
   }),
-  benefits: zod.string().array().min(0, { message: 'Choose at least one option!' }),
+  benefits: zod.string().array().min(0, { message: '하나 이상 선택해주세요.' }),
   // Not required
   experience: zod.string(),
 });

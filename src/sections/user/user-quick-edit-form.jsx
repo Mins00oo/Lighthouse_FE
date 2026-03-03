@@ -20,22 +20,22 @@ import { Form, Field, schemaHelper } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export const UserQuickEditSchema = zod.object({
-  name: zod.string().min(1, { message: 'Name is required!' }),
+  name: zod.string().min(1, { message: '이름을 입력해주세요.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
   phoneNumber: schemaHelper.phoneNumber({ isValid: isValidPhoneNumber }),
-  country: schemaHelper.nullableInput(zod.string().min(1, { message: 'Country is required!' }), {
+  country: schemaHelper.nullableInput(zod.string().min(1, { message: '국가를 선택해주세요.' }), {
     // message for null value
-    message: 'Country is required!',
+    message: '국가를 선택해주세요.',
   }),
-  state: zod.string().min(1, { message: 'State is required!' }),
-  city: zod.string().min(1, { message: 'City is required!' }),
-  address: zod.string().min(1, { message: 'Address is required!' }),
-  zipCode: zod.string().min(1, { message: 'Zip code is required!' }),
-  company: zod.string().min(1, { message: 'Company is required!' }),
-  role: zod.string().min(1, { message: 'Role is required!' }),
+  state: zod.string().min(1, { message: '시/도를 입력해주세요.' }),
+  city: zod.string().min(1, { message: '도시를 입력해주세요.' }),
+  address: zod.string().min(1, { message: '주소를 입력해주세요.' }),
+  zipCode: zod.string().min(1, { message: '우편번호를 입력해주세요.' }),
+  company: zod.string().min(1, { message: '회사명을 입력해주세요.' }),
+  role: zod.string().min(1, { message: '역할을 선택해주세요.' }),
   // Not required
   status: zod.string(),
 });

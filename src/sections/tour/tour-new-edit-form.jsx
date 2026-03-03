@@ -33,12 +33,12 @@ import { Form, Field, schemaHelper } from 'src/components/hook-form';
 
 export const NewTourSchema = zod
   .object({
-    name: zod.string().min(1, { message: 'Name is required!' }),
+    name: zod.string().min(1, { message: '이름을 입력해주세요.' }),
     content: schemaHelper
       .editor()
       .min(100, { message: 'Content must be at least 100 characters' })
       .max(500, { message: 'Content must be less than 500 characters' }),
-    images: schemaHelper.files({ message: 'Images is required!' }),
+    images: schemaHelper.files({ message: '이미지를 선택해주세요.' }),
     tourGuides: zod
       .array(
         zod.object({
@@ -48,24 +48,24 @@ export const NewTourSchema = zod
           phoneNumber: zod.string(),
         })
       )
-      .min(1, { message: 'Must have at least 1 guide!' }),
+      .min(1, { message: '최소 1명의 가이드가 필요합니다.' }),
     available: zod.object({
-      startDate: schemaHelper.date({ message: { required: 'Start date is required!' } }),
-      endDate: schemaHelper.date({ message: { required: 'End date is required!' } }),
+      startDate: schemaHelper.date({ message: { required: '시작일을 선택해주세요.' } }),
+      endDate: schemaHelper.date({ message: { required: '종료일을 선택해주세요.' } }),
     }),
-    durations: zod.string().min(1, { message: 'Durations is required!' }),
+    durations: zod.string().min(1, { message: '기간을 입력해주세요.' }),
     destination: schemaHelper.nullableInput(
-      zod.string().min(1, { message: 'Destination is required!' }),
+      zod.string().min(1, { message: '목적지를 입력해주세요.' }),
       {
         // message for null value
-        message: 'Destination is required!',
+        message: '목적지를 입력해주세요.',
       }
     ),
-    services: zod.string().array().min(2, { message: 'Must have at least 2 items!' }),
-    tags: zod.string().array().min(2, { message: 'Must have at least 2 items!' }),
+    services: zod.string().array().min(2, { message: '최소 2개 이상 입력해주세요.' }),
+    tags: zod.string().array().min(2, { message: '최소 2개 이상 입력해주세요.' }),
   })
   .refine((data) => !fIsAfter(data.available.startDate, data.available.endDate), {
-    message: 'End date cannot be earlier than start date!',
+    message: '종료일은 시작일 이후여야 합니다.',
     path: ['available.endDate'],
   });
 

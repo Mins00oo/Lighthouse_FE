@@ -24,13 +24,13 @@ export function RoleBasedGuard({ sx, children, hasContent, currentRole, allowedR
       >
         <m.div variants={varBounce('in')}>
           <Typography variant="h3" sx={{ mb: 2 }}>
-            Permission denied
+            접근 권한 없음
           </Typography>
         </m.div>
 
         <m.div variants={varBounce('in')}>
           <Typography sx={{ color: 'text.secondary' }}>
-            You do not have permission to access this page.
+            이 페이지에 접근할 권한이 없습니다.
           </Typography>
         </m.div>
 

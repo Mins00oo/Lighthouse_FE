@@ -19,17 +19,17 @@ export const ChangePassWordSchema = zod
   .object({
     oldPassword: zod
       .string()
-      .min(1, { message: 'Password is required!' })
-      .min(6, { message: 'Password must be at least 6 characters!' }),
-    newPassword: zod.string().min(1, { message: 'New password is required!' }),
-    confirmNewPassword: zod.string().min(1, { message: 'Confirm password is required!' }),
+      .min(1, { message: '비밀번호를 입력해주세요.' })
+      .min(6, { message: '비밀번호는 최소 6자 이상이어야 합니다.' }),
+    newPassword: zod.string().min(1, { message: '새 비밀번호를 입력해주세요.' }),
+    confirmNewPassword: zod.string().min(1, { message: '비밀번호 확인을 입력해주세요.' }),
   })
   .refine((data) => data.oldPassword !== data.newPassword, {
     message: 'New password must be different than old password',
     path: ['newPassword'],
   })
   .refine((data) => data.newPassword === data.confirmNewPassword, {
-    message: 'Passwords do not match!',
+    message: '비밀번호가 일치하지 않습니다.',
     path: ['confirmNewPassword'],
   });
 

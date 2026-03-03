@@ -28,12 +28,12 @@ export const UpdatePasswordSchema = zod
   .object({
     password: zod
       .string()
-      .min(1, { message: 'Password is required!' })
-      .min(6, { message: 'Password must be at least 6 characters!' }),
-    confirmPassword: zod.string().min(1, { message: 'Confirm password is required!' }),
+      .min(1, { message: '비밀번호를 입력해주세요.' })
+      .min(6, { message: '비밀번호는 최소 6자 이상이어야 합니다.' }),
+    confirmPassword: zod.string().min(1, { message: '비밀번호 확인을 입력해주세요.' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match!',
+    message: '비밀번호가 일치하지 않습니다.',
     path: ['confirmPassword'],
   });
 

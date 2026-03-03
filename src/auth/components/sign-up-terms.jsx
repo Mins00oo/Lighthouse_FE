@@ -19,15 +19,15 @@ export function SignUpTerms({ sx, ...other }) {
       ]}
       {...other}
     >
-      {'By signing up, I agree to '}
+      {'회원가입 시 '}
       <Link underline="always" color="text.primary">
-        Terms of service
+        이용약관
       </Link>
-      {' and '}
+      {' 및 '}
       <Link underline="always" color="text.primary">
-        Privacy policy
+        개인정보 처리방침
       </Link>
-      .
+      에 동의하게 됩니다.
     </Box>
   );
 }

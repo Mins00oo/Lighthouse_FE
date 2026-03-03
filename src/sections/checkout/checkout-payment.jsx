@@ -47,7 +47,7 @@ const CARD_OPTIONS = [
 ];
 
 export const PaymentSchema = zod.object({
-  payment: zod.string().min(1, { message: 'Payment is required!' }),
+  payment: zod.string().min(1, { message: '결제 수단을 선택해주세요.' }),
   // Not required
   delivery: zod.number(),
 });

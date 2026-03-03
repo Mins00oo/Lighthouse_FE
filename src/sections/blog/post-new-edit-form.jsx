@@ -31,15 +31,15 @@ import { PostDetailsPreview } from './post-details-preview';
 // ----------------------------------------------------------------------
 
 export const NewPostSchema = zod.object({
-  title: zod.string().min(1, { message: 'Title is required!' }),
-  description: zod.string().min(1, { message: 'Description is required!' }),
+  title: zod.string().min(1, { message: '제목을 입력해주세요.' }),
+  description: zod.string().min(1, { message: '설명을 입력해주세요.' }),
   content: schemaHelper
     .editor()
     .min(100, { message: 'Content must be at least 100 characters' })
     .max(500, { message: 'Content must be less than 500 characters' }),
-  coverUrl: schemaHelper.file({ message: 'Cover is required!' }),
-  tags: zod.string().array().min(2, { message: 'Must have at least 2 items!' }),
-  metaKeywords: zod.string().array().min(1, { message: 'Meta keywords is required!' }),
+  coverUrl: schemaHelper.file({ message: '커버 이미지를 선택해주세요.' }),
+  tags: zod.string().array().min(2, { message: '최소 2개 이상 입력해주세요.' }),
+  metaKeywords: zod.string().array().min(1, { message: '메타 키워드를 입력해주세요.' }),
   // Not required
   metaTitle: zod.string(),
   metaDescription: zod.string(),

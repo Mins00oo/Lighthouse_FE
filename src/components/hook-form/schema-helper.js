@@ -11,12 +11,12 @@ export const schemaHelper = {
   phoneNumber: (props) =>
     zod
       .string({
-        required_error: props?.message?.required ?? 'Phone number is required!',
-        invalid_type_error: props?.message?.invalid_type ?? 'Invalid phone number!',
+        required_error: props?.message?.required ?? '전화번호를 입력해주세요.',
+        invalid_type_error: props?.message?.invalid_type ?? '올바른 전화번호 형식이 아닙니다.',
       })
-      .min(1, { message: props?.message?.required ?? 'Phone number is required!' })
+      .min(1, { message: props?.message?.required ?? '전화번호를 입력해주세요.' })
       .refine((data) => props?.isValid?.(data), {
-        message: props?.message?.invalid_type ?? 'Invalid phone number!',
+        message: props?.message?.invalid_type ?? '올바른 전화번호 형식이 아닙니다.',
       }),
   /**
    * Date
@@ -34,7 +34,7 @@ export const schemaHelper = {
         if (!dateString) {
           ctx.addIssue({
             code: zod.ZodIssueCode.custom,
-            message: props?.message?.required ?? 'Date is required!',
+            message: props?.message?.required ?? '날짜를 선택해주세요.',
           });
           return null;
         }
@@ -42,7 +42,7 @@ export const schemaHelper = {
         if (!stringToDate.safeParse(date).success) {
           ctx.addIssue({
             code: zod.ZodIssueCode.invalid_date,
-            message: props?.message?.invalid_type ?? 'Invalid Date!!',
+            message: props?.message?.invalid_type ?? '올바른 날짜 형식이 아닙니다.',
           });
         }
 
@@ -54,7 +54,8 @@ export const schemaHelper = {
    * defaultValue === '' | <p></p>
    * Apply for editor
    */
-  editor: (props) => zod.string().min(8, { message: props?.message ?? 'Content is required!' }),
+  editor: (props) =>
+    zod.string().min(8, { message: props?.message ?? '내용을 입력해주세요.' }),
   /**
    * Nullable Input
    * Apply for input, select... with null value.
@@ -64,7 +65,7 @@ export const schemaHelper = {
       if (val === null || val === undefined) {
         ctx.addIssue({
           code: zod.ZodIssueCode.custom,
-          message: options?.message ?? 'Field can not be null!',
+          message: options?.message ?? '필수 입력 항목입니다.',
         });
         return val;
       }
@@ -76,7 +77,7 @@ export const schemaHelper = {
    */
   boolean: (props) =>
     zod.boolean({ coerce: true }).refine((val) => val === true, {
-      message: props?.message ?? 'Field is required!',
+      message: props?.message ?? '필수 선택 항목입니다.',
     }),
   /**
    * Slider
@@ -87,7 +88,7 @@ export const schemaHelper = {
       .number()
       .array()
       .refine((data) => data[0] >= props?.min && data[1] <= props?.max, {
-        message: props.message ?? `Range must be between ${props?.min} and ${props?.max}`,
+        message: props.message ?? `${props?.min}에서 ${props?.max} 사이의 값이어야 합니다.`,
       }),
   /**
    * File
@@ -100,7 +101,7 @@ export const schemaHelper = {
       if (!hasFile) {
         ctx.addIssue({
           code: zod.ZodIssueCode.custom,
-          message: props?.message ?? 'File is required!',
+          message: props?.message ?? '파일을 선택해주세요.',
         });
         return null;
       }
@@ -118,12 +119,12 @@ export const schemaHelper = {
       if (!data.length) {
         ctx.addIssue({
           code: zod.ZodIssueCode.custom,
-          message: props?.message ?? 'Files is required!',
+          message: props?.message ?? '파일을 선택해주세요.',
         });
       } else if (data.length < minFiles) {
         ctx.addIssue({
           code: zod.ZodIssueCode.custom,
-          message: `Must have at least ${minFiles} items!`,
+          message: `최소 ${minFiles}개 이상의 파일이 필요합니다.`,
         });
       }
 

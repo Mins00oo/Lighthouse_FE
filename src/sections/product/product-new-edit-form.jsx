@@ -36,30 +36,30 @@ import { Form, Field, schemaHelper } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export const NewProductSchema = zod.object({
-  name: zod.string().min(1, { message: 'Name is required!' }),
+  name: zod.string().min(1, { message: '이름을 입력해주세요.' }),
   description: schemaHelper
-    .editor({ message: 'Description is required!' })
+    .editor({ message: '설명을 입력해주세요.' })
     .min(100, { message: 'Description must be at least 100 characters' })
     .max(500, { message: 'Description must be less than 500 characters' }),
-  images: schemaHelper.files({ message: 'Images is required!' }),
-  code: zod.string().min(1, { message: 'Product code is required!' }),
-  sku: zod.string().min(1, { message: 'Product sku is required!' }),
+  images: schemaHelper.files({ message: '이미지를 선택해주세요.' }),
+  code: zod.string().min(1, { message: '상품 코드를 입력해주세요.' }),
+  sku: zod.string().min(1, { message: '상품 SKU를 입력해주세요.' }),
   quantity: schemaHelper.nullableInput(
-    zod.number({ coerce: true }).min(1, { message: 'Quantity is required!' }),
+    zod.number({ coerce: true }).min(1, { message: '수량을 입력해주세요.' }),
     {
       // message for null value
-      message: 'Quantity is required!',
+      message: '수량을 입력해주세요.',
     }
   ),
-  colors: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  sizes: zod.string().array().min(1, { message: 'Choose at least one option!' }),
-  tags: zod.string().array().min(2, { message: 'Must have at least 2 items!' }),
-  gender: zod.array(zod.string()).min(1, { message: 'Choose at least one option!' }),
+  colors: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  sizes: zod.string().array().min(1, { message: '하나 이상 선택해주세요.' }),
+  tags: zod.string().array().min(2, { message: '최소 2개 이상 입력해주세요.' }),
+  gender: zod.array(zod.string()).min(1, { message: '하나 이상 선택해주세요.' }),
   price: schemaHelper.nullableInput(
-    zod.number({ coerce: true }).min(1, { message: 'Price is required!' }),
+    zod.number({ coerce: true }).min(1, { message: '가격을 입력해주세요.' }),
     {
       // message for null value
-      message: 'Price is required!',
+      message: '가격을 입력해주세요.',
     }
   ),
   // Not required

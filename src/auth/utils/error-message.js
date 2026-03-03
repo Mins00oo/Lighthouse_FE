@@ -2,7 +2,7 @@
 
 export function getErrorMessage(error) {
   if (error instanceof Error) {
-    return error.message || error.name || 'An error occurred';
+    return error.message || error.name || '오류가 발생했습니다.';
   }
 
   if (typeof error === 'string') {
@@ -16,5 +16,5 @@ export function getErrorMessage(error) {
     }
   }
 
-  return `Unknown error: ${error}`;
+  return `알 수 없는 오류가 발생했습니다: ${error}`;
 }

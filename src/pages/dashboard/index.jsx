@@ -1,6 +1,6 @@
 import { CONFIG } from 'src/global-config';
 
-import { OverviewV2DashboardView } from 'src/sections/overview-v2/view';
+import { CustomDashboardView } from 'src/sections/custom-dashboard/view';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function OverviewAppPage() {
     <>
       <title>{metadata.title}</title>
 
-      <OverviewV2DashboardView />
+      <CustomDashboardView />
     </>
   );
 }

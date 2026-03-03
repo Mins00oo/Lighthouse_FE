@@ -20,22 +20,22 @@ import { useMockedUser } from 'src/auth/hooks';
 // ----------------------------------------------------------------------
 
 export const UpdateUserSchema = zod.object({
-  displayName: zod.string().min(1, { message: 'Name is required!' }),
+  displayName: zod.string().min(1, { message: '이름을 입력해주세요.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
-  photoURL: schemaHelper.file({ message: 'Avatar is required!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
+  photoURL: schemaHelper.file({ message: '프로필 이미지를 선택해주세요.' }),
   phoneNumber: schemaHelper.phoneNumber({ isValid: isValidPhoneNumber }),
-  country: schemaHelper.nullableInput(zod.string().min(1, { message: 'Country is required!' }), {
+  country: schemaHelper.nullableInput(zod.string().min(1, { message: '국가를 선택해주세요.' }), {
     // message for null value
-    message: 'Country is required!',
+    message: '국가를 선택해주세요.',
   }),
-  address: zod.string().min(1, { message: 'Address is required!' }),
-  state: zod.string().min(1, { message: 'State is required!' }),
-  city: zod.string().min(1, { message: 'City is required!' }),
-  zipCode: zod.string().min(1, { message: 'Zip code is required!' }),
-  about: zod.string().min(1, { message: 'About is required!' }),
+  address: zod.string().min(1, { message: '주소를 입력해주세요.' }),
+  state: zod.string().min(1, { message: '시/도를 입력해주세요.' }),
+  city: zod.string().min(1, { message: '도시를 입력해주세요.' }),
+  zipCode: zod.string().min(1, { message: '우편번호를 입력해주세요.' }),
+  about: zod.string().min(1, { message: '소개를 입력해주세요.' }),
   // Not required
   isPublic: zod.boolean(),
 });

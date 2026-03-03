@@ -18,7 +18,7 @@ export const signInWithPassword = async ({ username, password }) => {
     const { accessToken } = res.data.data;
 
     if (!accessToken) {
-      throw new Error('Access token not found in response');
+      throw new Error('인증 토큰을 받지 못했습니다.');
     }
 
     setSession(accessToken);
@@ -48,7 +48,7 @@ export const signUp = async ({ email, password, firstName, lastName }) => {
     const { accessToken } = res.data;
 
     if (!accessToken) {
-      throw new Error('Access token not found in response');
+      throw new Error('인증 토큰을 받지 못했습니다.');
     }
 
     localStorage.setItem(JWT_STORAGE_KEY, accessToken);

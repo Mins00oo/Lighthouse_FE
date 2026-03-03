@@ -8,6 +8,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 import { useMonitoringTokens } from 'src/hooks/use-monitoring-tokens';
 
+import { toKSTString } from 'src/utils/format-time';
+
 import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
@@ -45,8 +47,8 @@ export function V2TimeRangePicker({ value, onChange }) {
 
   const handlePreset = useCallback(
     (preset) => {
-      const to = dayjs().toISOString();
-      const from = dayjs().subtract(preset.minutes, 'minute').toISOString();
+      const to = toKSTString();
+      const from = toKSTString(dayjs().subtract(preset.minutes, 'minute'));
       onChange({ from, to, label: preset.label });
       handleClose();
     },
@@ -55,8 +57,8 @@ export function V2TimeRangePicker({ value, onChange }) {
 
   const handleCustomApply = useCallback(() => {
     if (customFrom && customTo) {
-      const from = customFrom.toISOString();
-      const to = customTo.toISOString();
+      const from = toKSTString(customFrom);
+      const to = toKSTString(customTo);
       onChange({ from, to, label: 'Custom' });
       handleClose();
     }

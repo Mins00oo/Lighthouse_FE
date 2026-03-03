@@ -27,11 +27,11 @@ import { SESSION_EXPIRED_KEY, SESSION_EXPIRED_REASONS } from '../../context/jwt/
 export const SignInSchema = zod.object({
   username: zod
     .string()
-    .min(1, { message: 'Username is required!' }),
+    .min(1, { message: '아이디를 입력해주세요.' }),
   password: zod
     .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
+    .min(1, { message: '비밀번호를 입력해주세요.' })
+    .min(6, { message: '비밀번호는 최소 6자 이상이어야 합니다.' }),
 });
 
 // ----------------------------------------------------------------------
@@ -178,12 +178,12 @@ export function JwtSignInView() {
 
   const renderForm = () => (
     <Box sx={{ gap: 3, display: 'flex', flexDirection: 'column' }}>
-      <Field.Text name="username" label="Username" slotProps={{ inputLabel: { shrink: true } }} />
+      <Field.Text name="username" label="아이디" slotProps={{ inputLabel: { shrink: true } }} />
 
       <Field.Text
         name="password"
-        label="Password"
-        placeholder="6+ characters"
+        label="비밀번호"
+        placeholder="6자 이상"
         type={showPassword.value ? 'text' : 'password'}
         slotProps={{
           inputLabel: { shrink: true },
@@ -208,9 +208,9 @@ export function JwtSignInView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
-        loadingIndicator="Sign in..."
+        loadingIndicator="로그인 중..."
       >
-        Sign in
+        로그인
       </Button>
     </Box>
   );
@@ -220,7 +220,7 @@ export function JwtSignInView() {
       <LighthouseIcon sx={{ mb: 3, mx: 'auto' }} />
 
       <FormHead
-        title="Sign in to your account"
+        title="로그인"
         description="Lighthouse Monitoring System"
       />
 

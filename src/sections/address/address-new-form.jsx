@@ -16,15 +16,15 @@ import { Form, Field, schemaHelper } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export const NewAddressSchema = zod.object({
-  city: zod.string().min(1, { message: 'City is required!' }),
-  state: zod.string().min(1, { message: 'State is required!' }),
-  name: zod.string().min(1, { message: 'Name is required!' }),
-  address: zod.string().min(1, { message: 'Address is required!' }),
-  zipCode: zod.string().min(1, { message: 'Zip code is required!' }),
+  city: zod.string().min(1, { message: '도시를 입력해주세요.' }),
+  state: zod.string().min(1, { message: '시/도를 입력해주세요.' }),
+  name: zod.string().min(1, { message: '이름을 입력해주세요.' }),
+  address: zod.string().min(1, { message: '주소를 입력해주세요.' }),
+  zipCode: zod.string().min(1, { message: '우편번호를 입력해주세요.' }),
   phoneNumber: schemaHelper.phoneNumber({ isValid: isValidPhoneNumber }),
-  country: schemaHelper.nullableInput(zod.string().min(1, { message: 'Country is required!' }), {
+  country: schemaHelper.nullableInput(zod.string().min(1, { message: '국가를 선택해주세요.' }), {
     // message for null value
-    message: 'Country is required!',
+    message: '국가를 선택해주세요.',
   }),
   // Not required
   primary: zod.boolean(),

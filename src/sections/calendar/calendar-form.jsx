@@ -26,11 +26,11 @@ import { ColorPicker } from 'src/components/color-utils';
 export const EventSchema = zod.object({
   title: zod
     .string()
-    .min(1, { message: 'Title is required!' })
+    .min(1, { message: '제목을 입력해주세요.' })
     .max(100, { message: 'Title must be less than 100 characters' }),
   description: zod
     .string()
-    .min(1, { message: 'Description is required!' })
+    .min(1, { message: '설명을 입력해주세요.' })
     .min(50, { message: 'Description must be at least 50 characters' }),
   // Not required
   color: zod.string(),

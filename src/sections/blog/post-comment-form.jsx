@@ -12,7 +12,7 @@ import { Form, Field } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export const CommentSchema = zod.object({
-  comment: zod.string().min(1, { message: 'Comment is required!' }),
+  comment: zod.string().min(1, { message: '댓글을 입력해주세요.' }),
 });
 
 // ----------------------------------------------------------------------

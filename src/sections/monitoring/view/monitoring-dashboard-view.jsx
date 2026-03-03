@@ -1,9 +1,10 @@
-import dayjs from 'dayjs';
 import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+
+import { toKSTString } from 'src/utils/format-time';
 
 import { DashboardContent } from 'src/layouts/dashboard';
 import {
@@ -28,8 +29,8 @@ import { MonitoringWidgetSummary } from '../monitoring-widget-summary';
 // ----------------------------------------------------------------------
 
 const DEFAULT_RANGE = {
-  from: dayjs().subtract(1, 'hour').toISOString(),
-  to: dayjs().toISOString(),
+  from: toKSTString(Date.now() - 60 * 60 * 1000),
+  to: toKSTString(),
   label: 'Last 1 hour',
 };
 

@@ -35,6 +35,15 @@ const isValidDate = (date) => date !== null && date !== undefined && dayjs(date)
 
 const toKST = (date) => dayjs(date).tz(TIMEZONE);
 
+/**
+ * KST(Asia/Seoul) 기준 ISO 8601 문자열 반환
+ * API 호출 시 시간 파라미터에 사용 (예: 2026-03-03T11:29:41+09:00)
+ * dayjs().toISOString()은 항상 UTC(Z)를 반환하므로 이 함수로 대체한다.
+ */
+export function toKSTString(date) {
+  return dayjs(date).tz(TIMEZONE).format();
+}
+
 // ----------------------------------------------------------------------
 
 export function today(template) {

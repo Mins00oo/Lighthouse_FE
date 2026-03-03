@@ -16,12 +16,12 @@ import { Form, Field } from 'src/components/hook-form';
 
 export const ReviewSchema = zod.object({
   rating: zod.number().min(1, 'Rating must be greater than or equal to 1!'),
-  name: zod.string().min(1, { message: 'Name is required!' }),
-  review: zod.string().min(1, { message: 'Review is required!' }),
+  name: zod.string().min(1, { message: '이름을 입력해주세요.' }),
+  review: zod.string().min(1, { message: '리뷰를 입력해주세요.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
 });
 
 // ----------------------------------------------------------------------

@@ -20,12 +20,12 @@ import { FormReturnLink } from '../../../components/form-return-link';
 export const VerifySchema = zod.object({
   code: zod
     .string()
-    .min(1, { message: 'Code is required!' })
-    .min(6, { message: 'Code must be at least 6 characters!' }),
+    .min(1, { message: '인증 코드를 입력해주세요.' })
+    .min(6, { message: '인증 코드는 최소 6자 이상이어야 합니다.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
 });
 
 // ----------------------------------------------------------------------

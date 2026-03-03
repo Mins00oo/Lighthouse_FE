@@ -26,16 +26,16 @@ import { SignUpTerms } from '../../components/sign-up-terms';
 // ----------------------------------------------------------------------
 
 export const SignUpSchema = zod.object({
-  firstName: zod.string().min(1, { message: 'First name is required!' }),
-  lastName: zod.string().min(1, { message: 'Last name is required!' }),
+  firstName: zod.string().min(1, { message: '이름을 입력해주세요.' }),
+  lastName: zod.string().min(1, { message: '성을 입력해주세요.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
   password: zod
     .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
+    .min(1, { message: '비밀번호를 입력해주세요.' })
+    .min(6, { message: '비밀번호는 최소 6자 이상이어야 합니다.' }),
 });
 
 // ----------------------------------------------------------------------

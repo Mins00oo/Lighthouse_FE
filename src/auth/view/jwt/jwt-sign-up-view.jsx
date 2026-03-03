@@ -27,16 +27,16 @@ import { SignUpTerms } from '../../components/sign-up-terms';
 // ----------------------------------------------------------------------
 
 export const SignUpSchema = zod.object({
-  firstName: zod.string().min(1, { message: 'First name is required!' }),
-  lastName: zod.string().min(1, { message: 'Last name is required!' }),
+  firstName: zod.string().min(1, { message: '이름을 입력해주세요.' }),
+  lastName: zod.string().min(1, { message: '성을 입력해주세요.' }),
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
   password: zod
     .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
+    .min(1, { message: '비밀번호를 입력해주세요.' })
+    .min(6, { message: '비밀번호는 최소 6자 이상이어야 합니다.' }),
 });
 
 // ----------------------------------------------------------------------
@@ -92,22 +92,22 @@ export function JwtSignUpView() {
       >
         <Field.Text
           name="firstName"
-          label="First name"
+          label="이름"
           slotProps={{ inputLabel: { shrink: true } }}
         />
         <Field.Text
           name="lastName"
-          label="Last name"
+          label="성"
           slotProps={{ inputLabel: { shrink: true } }}
         />
       </Box>
 
-      <Field.Text name="email" label="Email address" slotProps={{ inputLabel: { shrink: true } }} />
+      <Field.Text name="email" label="이메일" slotProps={{ inputLabel: { shrink: true } }} />
 
       <Field.Text
         name="password"
-        label="Password"
-        placeholder="6+ characters"
+        label="비밀번호"
+        placeholder="6자 이상"
         type={showPassword.value ? 'text' : 'password'}
         slotProps={{
           inputLabel: { shrink: true },
@@ -130,9 +130,9 @@ export function JwtSignUpView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
-        loadingIndicator="Create account..."
+        loadingIndicator="계정 생성 중..."
       >
-        Create account
+        계정 생성
       </Button>
     </Box>
   );
@@ -140,12 +140,12 @@ export function JwtSignUpView() {
   return (
     <>
       <FormHead
-        title="Get started absolutely free"
+        title="회원가입"
         description={
           <>
-            {`Already have an account? `}
+            {`이미 계정이 있으신가요? `}
             <Link component={RouterLink} href={paths.auth.jwt.signIn} variant="subtitle2">
-              Get started
+              로그인
             </Link>
           </>
         }

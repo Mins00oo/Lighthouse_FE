@@ -25,14 +25,14 @@ import { defaultItem, InvoiceNewEditDetails } from './invoice-new-edit-details';
 export const NewInvoiceSchema = zod
   .object({
     invoiceTo: schemaHelper.nullableInput(zod.custom(), {
-      message: 'Invoice to is required!',
+      message: '청구 대상을 선택해주세요.',
     }),
-    createDate: schemaHelper.date({ message: { required: 'Create date is required!' } }),
-    dueDate: schemaHelper.date({ message: { required: 'Due date is required!' } }),
+    createDate: schemaHelper.date({ message: { required: '생성일을 선택해주세요.' } }),
+    dueDate: schemaHelper.date({ message: { required: '마감일을 선택해주세요.' } }),
     items: zod.array(
       zod.object({
-        title: zod.string().min(1, { message: 'Title is required!' }),
-        service: zod.string().min(1, { message: 'Service is required!' }),
+        title: zod.string().min(1, { message: '제목을 입력해주세요.' }),
+        service: zod.string().min(1, { message: '서비스를 입력해주세요.' }),
         quantity: zod.number().int().positive().min(1, { message: 'Quantity must be more than 0' }),
         // Not required
         price: zod.number(),
@@ -51,7 +51,7 @@ export const NewInvoiceSchema = zod
     invoiceFrom: zod.custom().nullable(),
   })
   .refine((data) => !fIsAfter(data.createDate, data.dueDate), {
-    message: 'Due date cannot be earlier than create date!',
+    message: '마감일은 생성일 이후여야 합니다.',
     path: ['dueDate'],
   });
 

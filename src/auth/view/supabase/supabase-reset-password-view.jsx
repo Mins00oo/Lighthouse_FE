@@ -21,8 +21,8 @@ import { FormReturnLink } from '../../components/form-return-link';
 export const ResetPasswordSchema = zod.object({
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
 });
 
 // ----------------------------------------------------------------------

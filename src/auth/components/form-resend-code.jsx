@@ -16,7 +16,7 @@ export function FormResendCode({ value, disabled, onResendCode, sx, ...other }) 
       ]}
       {...other}
     >
-      {`Don’t have a code? `}
+      {`인증 코드를 받지 못하셨나요? `}
       <Link
         variant="subtitle2"
         onClick={onResendCode}
@@ -25,7 +25,7 @@ export function FormResendCode({ value, disabled, onResendCode, sx, ...other }) 
           ...(disabled && { color: 'text.disabled', pointerEvents: 'none' }),
         }}
       >
-        Resend {disabled && value && value > 0 && `(${value}s)`}
+        재전송 {disabled && value && value > 0 && `(${value}초)`}
       </Link>
     </Box>
   );

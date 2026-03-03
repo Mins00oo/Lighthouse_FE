@@ -16,8 +16,8 @@ import { Stepper, StepOne, StepTwo, StepThree, StepCompleted } from './form-step
 const STEPS = ['Step one', 'Step two', 'Step three'];
 
 const StepOneSchema = zod.object({
-  firstName: zod.string().min(1, { message: 'Full name is required!' }),
-  lastName: zod.string().min(1, { message: 'Last name is required!' }),
+  firstName: zod.string().min(1, { message: '이름을 입력해주세요.' }),
+  lastName: zod.string().min(1, { message: '성을 입력해주세요.' }),
 });
 
 const StepTwoSchema = zod.object({
@@ -25,18 +25,18 @@ const StepTwoSchema = zod.object({
     zod
       .number({ coerce: true })
       .int()
-      .min(1, { message: 'Age is required!' })
+      .min(1, { message: '나이를 입력해주세요.' })
       .max(80, { message: 'Age must be between 1 and 80' }),
     // message for null value
-    { message: 'Age is required!' }
+    { message: '나이를 입력해주세요.' }
   ),
 });
 
 const StepThreeSchema = zod.object({
   email: zod
     .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
+    .min(1, { message: '이메일을 입력해주세요.' })
+    .email({ message: '올바른 이메일 형식이 아닙니다.' }),
 });
 
 const WizardSchema = zod.object({
